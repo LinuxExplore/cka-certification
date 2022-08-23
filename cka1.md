@@ -2,7 +2,6 @@
 CKA Simulator Kubernetes 1.23 
 =============================
 
-[https://killer.sh](https://killer.sh/)
 
 #### Pre Setup
 
@@ -5319,8 +5318,6 @@ curl -k https://kubernetes.default/api/v1/secrets -H "Authorization: Bearer ${TO
 
 CKA Simulator Preview Kubernetes 1.23 
 =====================================
-
-[https://killer.sh](https://killer.sh/)
 
 This is a preview of the full CKA Simulator course content.
 
