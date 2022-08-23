@@ -527,26 +527,11 @@ spec:
 status: {}
 ```
 
-
- 
-
-
- 
-
-
 Then create the *Pod*:
 
 ``` 
 k -f 4_pod1.yaml create
 ```
-
-
-
- 
-
-
- 
-
 
 And confirm its in a non-ready state:
 
@@ -556,13 +541,6 @@ And confirm its in a non-ready state:
 NAME                     READY   STATUS    RESTARTS   AGE
 ready-if-service-ready   0/1     Running   0          7s
 ```
-
-
- 
-
-
-
-
 
 We can also check the reason for this using describe:
 
@@ -574,26 +552,11 @@ We can also check the reason for this using describe:
 wget: download timed out
 ```
 
-
- 
-
-
- 
-
-
 Now we create the second *Pod*:
 
 ``` 
 k run am-i-ready --image=nginx:1.16.1-alpine --labels="id=cross-server-ready"
 ```
-
-
-
- 
-
-
- 
-
 
 The already existing *Service* `service-am-i-ready`
 should now have an *Endpoint*:
@@ -777,24 +740,6 @@ vim 6_pv.yaml
 Find an example from <https://kubernetes.io/docs> and alter it:
 
 ``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
-
-``` 
 # 6_pv.yaml
 
 kind: PersistentVolume
@@ -846,24 +791,6 @@ vim 6_pvc.yaml
 
 
 Find an example from <https://kubernetes.io/docs> and alter it:
-
-``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
 
 ``` 
 # 6_pvc.yaml
@@ -1147,24 +1074,6 @@ started/installed on the master node.
 Write your findings into file
 `/opt/course/8/master-components.txt`. The file should
 be structured like:
-
-``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
 
 ``` 
 # /opt/course/8/master-components.txt
@@ -1825,24 +1734,6 @@ k auth can-i -h # examples
 Like this:
 
 ``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
-
-``` 
 ➜ k -n project-hamster auth can-i create secret \
 
   --as system:serviceaccount:project-hamster:processor
@@ -2477,24 +2368,6 @@ Write your answers into file
 `/opt/course/14/cluster-info`, structured like this:
 
 ``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
-
-``` 
 # /opt/course/14/cluster-info
 
 1: [ANSWER]
@@ -2593,24 +2466,6 @@ The suffix is the node hostname with a leading hyphen. It used to be
 
 The resulting `/opt/course/14/cluster-info` could look
 like:
-
-``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
 
 ``` 
 # /opt/course/14/cluster-info
@@ -2855,24 +2710,6 @@ k api-resources --namespaced -o name > /opt/course/16/resources.txt
 Which results in the file:
 
 ``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
-
-``` 
 # /opt/course/16/resources.txt
 
 bindings
@@ -2917,24 +2754,6 @@ roles.rbac.authorization.k8s.io
  
 
 ###### Namespace with most Roles
-
-``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
 
 ``` 
 ➜ k -n project-c13 get role --no-headers | wc -l
@@ -3205,24 +3024,6 @@ Yes, its configured as a service with config at
 but we see its inactive. Let\'s try to start it:
 
 ``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
-
-``` 
 ➜ root@cluster3-worker1:~# service kubelet start
 
 ➜ root@cluster3-worker1:~# service kubelet status
@@ -3376,24 +3177,6 @@ vim 19_secret1.yaml
 
 
 We need to adjust the *Namespace* for that *Secret*:
-
-``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
 
 ``` 
 # 19_secret1.yaml
@@ -3676,24 +3459,6 @@ here. This will be done later using `kubeadm join`. For
 now we can continue with kubelet and kubectl:
 
 ``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
-
-``` 
 ➜ root@cluster3-worker2:~# apt update
 
 ...
@@ -3785,24 +3550,6 @@ We see the expiration of 23h for our token, we could adjust this by
 passing the ttl argument.
 
 Next we connect again to worker2 and simply execute the join command:
-
-``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
 
 ``` 
 ➜ ssh cluster3-worker2
@@ -4320,24 +4067,6 @@ vault-0     1/1     Running   0          3m17s   vault
 
 
 We test the current connection situation and see nothing is restricted:
-
-``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
 
 ``` 
 ➜ k -n project-snake get pod -o wide
@@ -4961,24 +4690,6 @@ o3db-1 # maybe not existing if already removed via previous scenario
 To automate this process you could use jsonpath like this:
 
 ``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
-
-``` 
 ➜ k -n project-c13 get pod \
 
   -o jsonpath="{range .items[*]} {.metadata.name}{.spec.containers[*].resources}{'\n'}"
@@ -5016,24 +4727,6 @@ This lists all *Pod* names and their requests/limits, hence we see the
 three *Pods* without those defined.
 
 Or we look for the Quality of Service classes:
-
-``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
 
 ``` 
 ➜ k get pods -n project-c13 \
@@ -5212,24 +4905,6 @@ We find the the token in the mounted folder at
 do:
 
 ``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
-
-``` 
 ➜ TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
 
 ➜ curl -k https://kubernetes.default/api/v1/secrets -H "Authorization: Bearer ${TOKEN}"
@@ -5386,24 +5061,6 @@ its status.
 ###### Find out etcd information
 
 Let\'s check the nodes:
-
-``` 
-x
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
 
 ``` 
 ➜ k get node
@@ -5790,24 +5447,6 @@ k -n project-hamster get pod,svc,ep
 First we get nodes in the cluster:
 
 ``` 
-x
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
-
-``` 
 ➜ k get node
 
 NAME               STATUS   ROLES    AGE   VERSION
@@ -5852,24 +5491,6 @@ This should be repeated on every node and result in the same output
 ###### Check kube-proxy is creating iptables rules
 
 Now we check the iptables rules on every node first manually:
-
-``` 
-
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
 
 ``` 
 ➜ ssh cluster1-master1 iptables-save | grep p2-service
@@ -6092,35 +5713,7 @@ Now we do the same for the controller manager:
 
 ``` 
 ➜ root@cluster2-master1:~# vim /etc/kubernetes/manifests/kube-controller-manager.yaml
-```
 
-
-
- 
-
-
- 
-
-
-``` 
-x
-```
-
-
-
-
- 
-
-
- 
- 
- 
-
-
- 
-
-
-``` 
 # /etc/kubernetes/manifests/kube-controller-manager.yaml
 
 apiVersion: v1
@@ -6128,10 +5721,6 @@ kind: Pod
 metadata:
   creationTimestamp: null
   labels:
-```
-
- 
-``` 
     component: kube-controller-manager
 
     tier: control-plane
@@ -6144,12 +5733,7 @@ spec:
     - --allocate-node-cidrs=true
     - --authentication-kubeconfig=/etc/kubernetes/controller-manager.conf
     - --authorization-kubeconfig=/etc/kubernetes/controller-manager.conf
-```
-
- 
-``` 
     - --bind-address=127.0.0.1
-
     - --client-ca-file=/etc/kubernetes/pki/ca.crt
     - --cluster-cidr=10.244.0.0/16
     - --cluster-name=kubernetes
@@ -6166,13 +5750,6 @@ spec:
     - --use-service-account-credentials=true
 ```
 
-
- 
-
-
- 
-
-
 **Give it a bit for the controller-manager to restart**.
 
 We can check if it was restarted using `crictl`:
@@ -6182,18 +5759,6 @@ We can check if it was restarted using `crictl`:
 
 3d258934b9fd6    aca5ededae9c8    About a minute ago   Running    kube-scheduler ...
 ```
-
-
- 
-
-
- 
-
-
- 
-
- 
-
 Checking our existing *Pod* and *Service* again:
 
 ``` 
@@ -6204,27 +5769,11 @@ pod/check-ip   1/1     Running   0          21m
 NAME                       TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
 service/check-ip-service   ClusterIP   10.99.32.177   <none>        80/TCP    21m
 ```
-
-
- 
-
-
- 
-
-
 Nothing changed so far. Now we create another *Service* like before:
 
 ``` 
 k expose pod check-ip --name check-ip-service2 --port 80
 ```
-
-
-
- 
-
-
- 
-
 
 And check again:
 
@@ -6239,17 +5788,8 @@ endpoints/check-ip-service    10.44.0.1:80   8m
 endpoints/check-ip-service2   10.44.0.1:80   6m13s
 ```
 
-
- 
-
-
- 
-
-
 There we go, the new *Service* got an ip of the new specified range
 assigned. We also see that both *Services* have our *Pod* as endpoint.
-
- 
 
 
 CKA Tips Kubernetes 1.23 
@@ -6301,10 +5841,6 @@ with all.
 -   Know how to use Kubeadm to for example add nodes to a cluster
 -   Know how to create an Ingress resources
 -   Know how to snapshot/restore ETCD from another machine
-
- 
-
- 
 
 CKA Preparation
 ---------------
@@ -6494,14 +6030,6 @@ notes with commands on your desktop etc.
 export do="--dry-run=client -o yaml"
 ```
 
-
-
- 
-
-
- 
-
-
 This way you can just run
 `k run pod1 --image=nginx $do`. Short for \"dry
 output\", but use whatever name you like.
@@ -6511,14 +6039,6 @@ output\", but use whatever name you like.
 ``` 
 export now="--force --grace-period 0"
 ```
-
-
-
- 
-
-
- 
-
 
 This way you can run `k delete pod1 $now` and don\'t
 have to wait for \~30 seconds termination time.
@@ -6536,14 +6056,6 @@ In addition you could define an alias like:
 alias kn='kubectl config set-context --current --namespace '
 ```
 
-
-
- 
-
-
- 
-
-
 Which allows you to define the default namespace of the current context.
 Then once you switch a context or namespace you can just run:
 
@@ -6552,13 +6064,6 @@ kn default        # set default to default
 
 kn my-namespace   # set default to my-namespace
 ```
-
-
- 
-
-
- 
-
 
 But only do this if you used it before and are comfortable doing so.
 Else you need to specify the namespace for every call, which is also
@@ -6570,15 +6075,6 @@ k -n my-namespace get all
 k -n my-namespace get pod
 ...
 ```
-
-
- 
-
-
-
-
-
- 
 
 ### Be fast
 
@@ -6596,14 +6092,6 @@ You can delete *pods* fast with:
 ​xk delete pod x --grace-period 0 --force
 k delete pod x $now # if export from above is configured
 ```
-
- 
-
-
-
-
-
- 
 
 ### Vim
 
@@ -6629,13 +6117,6 @@ Copy marked lines: y
 Cut marked lines: d
 Past lines: p or P
 ```
-
-
- 
-
-
- 
-
 
 **Indent multiple lines**
 
