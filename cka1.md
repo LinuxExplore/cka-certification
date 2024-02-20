@@ -998,7 +998,7 @@ So we execute:
 
 Which will create a *Role* like:
 
-    # kubectl -n project-hamster create role accessor --verb=create --resource=secret --resource=configmap
+    # kubectl -n project-hamster create role processor --verb=create --resource=secret --resource=configmap
 
     apiVersion: rbac.authorization.k8s.io/v1
     kind: Role
